@@ -10,6 +10,8 @@ const logoutRouter = require("./routes/api/logout.router");
 const signupRouter = require("./routes/api/signup.router");
 const avatarRouter = require("./routes/api/avatar.router");
 const updateUserSubscriptionRouter = require("./routes/api/updateUserSubscription.router");
+const resendVerificationRouter = require("./routes/api/resendVerification.router");
+const verifyEmailRouter = require("./routes/api/verifyEmail.router");
 
 const tokenMiddleware = require("./middleware/tokenMiddleware");
 
@@ -35,6 +37,8 @@ app.use(
   tokenMiddleware,
   updateUserSubscriptionRouter
 );
+app.use("/users/resendVerification", resendVerificationRouter);
+app.use("/users/verify", verifyEmailRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });
